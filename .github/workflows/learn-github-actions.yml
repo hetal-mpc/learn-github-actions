@@ -20,8 +20,3 @@ jobs:
       with:
         esp_idf_version: v4.4
         target: esp32
-    - name: Flash and monitor
-      run: idf.py -p /dev/ttyUSB0 flash monitor
-
-
-
