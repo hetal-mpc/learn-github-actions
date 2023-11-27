@@ -7,10 +7,10 @@ on:
     
 jobs:
   build:
-    # runs-on:
-    #   -self-hosted
-    #   - hardware
-    #   -esp32
+    runs-on:
+      -self-hosted
+      - hardware
+      -esp32
 
       steps:
           name: ESP IDF Build
