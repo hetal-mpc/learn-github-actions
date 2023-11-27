@@ -1,30 +1,16 @@
-name: Build ESP32 Hello World
-run-name: ${{ github.actor }} is learning GitHub Actions
-on:
-  push:
-    branches:
-      - main
-    
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-    - name: Echeckout repository
+    - name: Checkout repo
       uses: actions/checkout@v2
-        
-    - name: Setup ESP-IDF
-      uses: espressif/esp-idf@v4.3
       with:
-        esp-idf-version: 'v4.3'
-        
-    - name: Configure Target
-      run: |
-        idf.py set-target esp32
-        idf.py fullclean
-
-    - name: Build project
-      run: idf.py build
-
-    - name: Flash and monitor
-      run: idf.py -p /dev/ttyUSB0 flash monitor
+        submodules: 'recursive'
+    - name: esp-idf build
+      uses: espressif/esp-idf-ci-action@v1
+      with:
+        esp_idf_version: v4.4
+        target: esp32
+        path: 'learn-github-actions/'
