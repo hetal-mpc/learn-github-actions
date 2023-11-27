@@ -1,4 +1,4 @@
-name: Build
+name: Build ESP32 Hello World
 run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   push:
@@ -7,12 +7,24 @@ on:
     
 jobs:
   build:
-    runs-on:
-      - self-hosted
-      - hardware
-      - esp32
+    runs-on: ubuntu-latest
 
     steps:
-      - name: ESP IDF Build
-        run: docker run --rm -v $PWD:/project -w /project espressif/esp-idf latest_idf_v5.1.1 /bin/bash -c "export IDF_TARGET=esp32; idf.py fullclean; idf.py set-target esp32; idf.py build"
-        shell: bash
+    - name: Echeckout repository
+      uses: actions/checkout@v2
+        
+    - name: Setup ESP-IDF
+      uses: espressif/setup-esp-idf@v5
+      with:
+        esp-idf-version: 'v5.1'
+        
+    - name: Configure Target
+      run: |
+        idf.py set-target esp32
+        idf.py fullclean
+
+    - name: Build project
+      run: idf.py build
+
+    - name: Flash and monitor
+      run: idf.py -p /dev/ttyUSB0 flash monitor
