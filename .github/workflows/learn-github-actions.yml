@@ -10,7 +10,7 @@ jobs: #The workflow can have one or more jobs. In this example, there is a singl
     runs-on: 
     - self-hosted #ubuntu-latest  #This specifies that the job will run on a machine with the latest version of Ubuntu.
     - hardware
-    - esp32s3
+    - esp32
 
     steps: #Each job consists of a sequence of steps. These steps define the tasks that will be performed in the job.
     - name: Checkout repo  #This step checks out the source code of your repository onto the runner.
