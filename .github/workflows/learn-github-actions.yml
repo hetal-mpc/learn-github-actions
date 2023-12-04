@@ -9,20 +9,18 @@ jobs: #The workflow can have one or more jobs. In this example, there is a singl
   build:
     runs-on: 
     - self-hosted #ubuntu-latest  #This specifies that the job will run on a machine with the latest version of Ubuntu.
+    - hardware
+    - esp32
 
     steps: #Each job consists of a sequence of steps. These steps define the tasks that will be performed in the job.
     - name: Checkout repo  #This step checks out the source code of your repository onto the runner.
-      uses: actions/checkout@v3  #The actions/checkout action is commonly used in GitHub Actions workflows to check out the source code of the repository onto the runner (the machine where the workflow is executed). The @v2 specifies that version 2 of this action should be used.
+      uses: actions/checkout@v2  #The actions/checkout action is commonly used in GitHub Actions workflows to check out the source code of the repository onto the runner (the machine where the workflow is executed). The @v2 specifies that version 2 of this action should be used.
       with:
         submodules: 'recursive'
-        ssh-key: ${{ secrets.GH_SSH_PRIVATE_KEY }}
+        #ssh-key: ${{ secrets.GH_SSH_PRIVATE_KEY }}
 
-    - name: change path
-      run: cd ../test-github-actions/learn-github-actions/
-    - name: source esp-idf 
-      run: source ./../../esp-idf/export.sh
-    - name: build
-      run: idf.py set-target esp32 build
+    - name: Run Test
+      run: source ~/corfu/esp-idf/export.sh; idf.py set-target esp32; idf.py build
     #- name: esp-idf build #This line specifies the name of the step, name for identification and display purposes.
      # uses: espressif/esp-idf-ci-action@v1 #a pre-defined action provided by the Espressif team for building projects with the ESP-IDF (Espressif IoT Development Framework). The @v1 specifies that version 1 of this action should be used.
       #with: #This keyword is used to pass input parameters to the action
