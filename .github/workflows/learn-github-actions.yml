@@ -18,7 +18,7 @@ jobs: #The workflow can have one or more jobs. In this example, there is a singl
         #ssh-key: ${{ secrets.GH_SSH_PRIVATE_KEY }}
 
     - name: Run Test
-      run: source ~/corfu/esp-idf/export.sh; idf.py set-target esp32; idf.py build
+      run: source ~/corfu/esp-idf/export.sh; idf.py set-target esp32c3; idf.py build; idf.py flash -p /dev/ttyUSB0
     #- name: esp-idf build #This line specifies the name of the step, name for identification and display purposes.
      # uses: espressif/esp-idf-ci-action@v1 #a pre-defined action provided by the Espressif team for building projects with the ESP-IDF (Espressif IoT Development Framework). The @v1 specifies that version 1 of this action should be used.
       #with: #This keyword is used to pass input parameters to the action
