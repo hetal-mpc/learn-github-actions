@@ -15,4 +15,31 @@ jobs:
           architecture: 'x64'
       - name: Display Python version
         run: |
-          python -c "print('Hello, world!')"
+          import os
+          import sys
+          import errno
+          import shutil
+          
+          project_name="corfu"
+          
+          # Check for version code argument
+          
+          ###################################### PROJECT CONFIGURATION ###################################################################
+          
+          # Paths and variables to configure for the specific project
+          app_build_file="build/test.bin"
+          
+          build_command="idf.py clean && idf.py build"
+                   
+          ################################################################################################################################
+          
+
+          print("\nWelcome to the "+ project_name + " project.\n")
+          
+          # Create a git tag with version name into the master branch
+          os.system("git tag " + "1.1")
+          os.system("git push --tag")
+          
+          print("Release Done...!!!")
+          
+          exit(0)
