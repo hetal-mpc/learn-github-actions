@@ -14,4 +14,4 @@ jobs:
           python-version: '3.x'
           architecture: 'x64'
       - name: Display Python version
-        run: python -c "print(hello world)"
+        run: python -c "print('Hello, world!')"
