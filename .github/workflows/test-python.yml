@@ -25,9 +25,7 @@ jobs:
           # Check for version code argument
           
           ###################################### PROJECT CONFIGURATION ###################################################################
-          
-          # Paths and variables to configure for the specific project
-          app_build_file="build/test.bin"
+
           
           build_command="idf.py clean && idf.py build"
                    
